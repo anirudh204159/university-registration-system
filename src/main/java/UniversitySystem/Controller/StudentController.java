@@ -1,6 +1,8 @@
 package UniversitySystem.Controller;
 
+import UniversitySystem.Model.Major.Major;
 import UniversitySystem.Model.Student.Student;
+import UniversitySystem.Repository.MajorRepository.MajorRepository;
 import UniversitySystem.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,8 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private MajorRepository majorRepository;
 
     // Get all students
     @GetMapping
@@ -32,7 +36,21 @@ public class StudentController {
 
     // Add a new student
     @PostMapping
-    public Student addStudent(@RequestBody Student student) {
+    public Student addStudent(@RequestBody UniversitySystem.DTO.StudentDTO.Student studentRequest) {
+        Student student = new Student();
+        student.setName(studentRequest.getName());
+        student.setEmail(studentRequest.getEmail());
+        student.setAcademic_standing(studentRequest.getAcademicStanding());
+
+        if (studentRequest.getMajorId() > 0) {
+            Major major = majorRepository.findById(studentRequest.getMajorId())
+                    .orElseThrow(() -> new RuntimeException("Major not found with ID: " + studentRequest.getMajorId()));
+            student.setMajor(major);
+        } else {
+            // No major provided, leave as null
+            student.setMajor(null);
+        }
+
         return studentService.addStudent(student);
     }
 

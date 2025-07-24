@@ -1,6 +1,7 @@
 package UniversitySystem.Model.Major;
 
 import UniversitySystem.Model.Course.Course;
+import UniversitySystem.Model.Student.Student;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -33,6 +34,10 @@ public class Major {
     @JsonManagedReference
     private List<Course> courses;
 
+    @OneToMany(mappedBy = "major")
+    @JsonManagedReference("major-student")
+    private List<Student> students;
+
 
     public Major() {
 
@@ -54,5 +59,17 @@ public class Major {
     }
     public void setDepartment(String department){
         this.department = department;
+    }
+    public List<Course> getCourses(){
+        return courses;
+    }
+    public void setCourses(List<Course> courses){
+        this.courses = courses;
+    }
+    public List<Student> getStudents(){
+        return students;
+    }
+    public void setStudents(List<Student> students){
+        this.students = students;
     }
 }

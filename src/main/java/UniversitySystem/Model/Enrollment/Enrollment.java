@@ -27,8 +27,9 @@ public class Enrollment {
     // The student associated with this enrollment
     @ManyToOne
     @JoinColumn(name = "studentId", nullable = false)
-    @JsonBackReference
+    @JsonBackReference("student-enrollments")
     private Student student;
+
 
     // The course associated with this enrollment
     @ManyToOne

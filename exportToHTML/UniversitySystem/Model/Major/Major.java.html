@@ -1,0 +1,95 @@
+<html>
+<head>
+<title>Major.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #d55fde; font-style: italic;}
+.s1 { color: #bbbbbb;}
+.s2 { color: #5c6370; font-style: italic;}
+.s3 { color: #89ca78;}
+</style>
+</head>
+<body bgcolor="#282c34">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Major.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">UniversitySystem.Model.Major;</span>
+
+<span class="s0">import </span><span class="s1">UniversitySystem.Model.Course.Course;</span>
+<span class="s0">import </span><span class="s1">UniversitySystem.Model.Student.Student;</span>
+<span class="s0">import </span><span class="s1">com.fasterxml.jackson.annotation.JsonManagedReference;</span>
+<span class="s0">import </span><span class="s1">jakarta.persistence.*;</span>
+
+<span class="s0">import </span><span class="s1">javax.validation.constraints.NotBlank;</span>
+<span class="s0">import </span><span class="s1">java.util.List;</span>
+
+<span class="s2">/* 
+ * Represents a student's academic major (e.g., Computer Science, Biology). 
+ * Each major is part of a department and can be associated with multiple courses. 
+ */</span>
+
+<span class="s1">@Entity</span>
+<span class="s1">@Table(name = </span><span class="s3">&quot;major&quot;</span><span class="s1">)</span>
+<span class="s0">public class </span><span class="s1">Major {</span>
+    <span class="s2">// Unique identifier for each major (Primary Key)</span>
+    <span class="s1">@Id</span>
+    <span class="s1">@GeneratedValue(strategy = GenerationType.IDENTITY)</span>
+    <span class="s0">private int </span><span class="s1">majorId;</span>
+
+    <span class="s2">// Name of the major (e.g., Biology, Computer Science)</span>
+    <span class="s1">@NotBlank(message = </span><span class="s3">&quot;Major field cannot be empty&quot;</span><span class="s1">)</span>
+    <span class="s0">private </span><span class="s1">String majorName;</span>
+
+    <span class="s2">// Department this major belongs to (e.g., Engineering, Arts &amp; Sciences)</span>
+    <span class="s1">@NotBlank(message = </span><span class="s3">&quot;Department field cannot be empty&quot;</span><span class="s1">)</span>
+    <span class="s0">private </span><span class="s1">String department;</span>
+
+    <span class="s2">// List of courses that fall under this major</span>
+    <span class="s1">@OneToMany(mappedBy = </span><span class="s3">&quot;major&quot;</span><span class="s1">)</span>
+    <span class="s1">@JsonManagedReference</span>
+    <span class="s0">private </span><span class="s1">List&lt;Course&gt; courses;</span>
+
+    <span class="s1">@OneToMany(mappedBy = </span><span class="s3">&quot;major&quot;</span><span class="s1">)</span>
+    <span class="s1">@JsonManagedReference(</span><span class="s3">&quot;major-student&quot;</span><span class="s1">)</span>
+    <span class="s0">private </span><span class="s1">List&lt;Student&gt; students;</span>
+
+
+    <span class="s0">public </span><span class="s1">Major() {</span>
+
+    <span class="s1">}</span>
+    <span class="s0">public int </span><span class="s1">getMajorId(){</span>
+        <span class="s0">return </span><span class="s1">majorId;</span>
+    <span class="s1">}</span>
+    <span class="s0">public void </span><span class="s1">setMajorId(</span><span class="s0">int </span><span class="s1">majorId){</span>
+        <span class="s0">this</span><span class="s1">.majorId = majorId;</span>
+    <span class="s1">}</span>
+    <span class="s0">public </span><span class="s1">String getMajorName(){</span>
+        <span class="s0">return </span><span class="s1">majorName;</span>
+    <span class="s1">}</span>
+    <span class="s0">public void </span><span class="s1">setMajorName(String majorName){</span>
+        <span class="s0">this</span><span class="s1">.majorName = majorName;</span>
+    <span class="s1">}</span>
+    <span class="s0">public </span><span class="s1">String getDepartment(){</span>
+        <span class="s0">return </span><span class="s1">department;</span>
+    <span class="s1">}</span>
+    <span class="s0">public void </span><span class="s1">setDepartment(String department){</span>
+        <span class="s0">this</span><span class="s1">.department = department;</span>
+    <span class="s1">}</span>
+    <span class="s0">public </span><span class="s1">List&lt;Course&gt; getCourses(){</span>
+        <span class="s0">return </span><span class="s1">courses;</span>
+    <span class="s1">}</span>
+    <span class="s0">public void </span><span class="s1">setCourses(List&lt;Course&gt; courses){</span>
+        <span class="s0">this</span><span class="s1">.courses = courses;</span>
+    <span class="s1">}</span>
+    <span class="s0">public </span><span class="s1">List&lt;Student&gt; getStudents(){</span>
+        <span class="s0">return </span><span class="s1">students;</span>
+    <span class="s1">}</span>
+    <span class="s0">public void </span><span class="s1">setStudents(List&lt;Student&gt; students){</span>
+        <span class="s0">this</span><span class="s1">.students = students;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>

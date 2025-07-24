@@ -34,8 +34,8 @@ public class Student {
 
     // The major the student is enrolled in
     @ManyToOne
-    @JoinColumn(name = "majorId", nullable = false)
-    @JsonBackReference
+    @JoinColumn(name = "majorId", nullable = true)
+    @JsonBackReference("major-student")
     private Major major;
 
     // Student's academic standing (e.g., Freshman, Sophomore)
@@ -44,9 +44,8 @@ public class Student {
 
     // List of courses this student is enrolled in (via Enrollment)
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
+    @JsonManagedReference("student-enrollments")
     private List<Enrollment> enrollment;
-
 
 
     public int getStudentId() {
