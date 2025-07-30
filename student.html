@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Dashboard | SchemaSquad</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body onload="requireRole('Student')">
+  <main class="main">
+    <h1>Student Dashboard</h1>
+    <p>View and manage your course registrations.</p>
+    <div class="enroll-form">
+      <input type="text" placeholder="Student ID" />
+      <select>
+        <option>Select a Course</option>
+        <option>DB101</option>
+        <option>CS201</option>
+      </select>
+      <button>Register</button>
+      <button>Drop</button>
+    </div>
+    <div class="schedule-table">
+      <h3>Your Schedule</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Course</th>
+            <th>Day</th>
+            <th>Time</th>
+            <th>Room</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>DB101</td>
+            <td>Mon/Wed</td>
+            <td>10:00 AM</td>
+            <td>Room 305</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Your waitlist position: <strong>2</strong></p>
+    <button onclick="logout()">Logout</button>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

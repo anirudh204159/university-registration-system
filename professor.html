@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Professor Dashboard | SchemaSquad</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body onload="requireRole('Professor')">
+  <main class="main">
+    <h1>Professor Dashboard</h1>
+    <p>Manage your courses and waitlists.</p>
+    <div class="course-card">
+      <h3>DB101 - Intro to Databases</h3>
+      <p>Enrolled: 25 students</p>
+      <p>Waitlist: 3 students</p>
+      <button>View Students</button>
+      <button>Manage Waitlist</button>
+    </div>
+    <div class="course-edit-form">
+      <h3>Update Course Details</h3>
+      <input type="text" placeholder="New Location" />
+      <input type="text" placeholder="New Time" />
+      <button>Save Changes</button>
+    </div>
+    <button onclick="logout()">Logout</button>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

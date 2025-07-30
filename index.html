@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Schema Squad</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="logo">Schema Squad</div>
+    <nav class="nav">
+      <a href="#" onclick="preselectRole('Student')">Students</a>
+      <a href="#" onclick="preselectRole('Professor')">Professors</a>
+    </nav>
+  </header>
+
+  <main class="main animated">
+    <h1>Welcome to Schema Squad</h1>
+    <p>Efficient and intuitive course registration for students and faculty.</p>
+  </main>
+
+  <!-- Login Modal -->
+  <div class="modal" id="loginModal" style="display:none;">
+    <div class="modal-content">
+      <span class="close" onclick="closeLogin()">&times;</span>
+      <h2>Login</h2>
+      <input type="text" placeholder="Username or Email" id="loginEmail" />
+      <input type="password" placeholder="Password" id="loginPass" />
+      <div class="role-select">
+        <label><input type="radio" name="role" value="Student" /> Student</label>
+        <label><input type="radio" name="role" value="Professor" /> Professor</label>
+      </div>
+      <button onclick="submitLogin()">Login</button>
+    </div>
+  </div>
+
+  
+  <section class="mission">
+    <h2>Our Mission</h2>
+    <p>Empowering students and faculty with fast, modern, and reliable course registration tools.</p>
+  </section>
+
+  <section class="features">
+    <h2>Key Features</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>🚀 Fast Registration</h3>
+        <p>Enroll in seconds with real-time updates.</p>
+      </div>
+      <div class="feature-card">
+        <h3>🎯 Smart Scheduling</h3>
+        <p>Auto-conflict checks and clean schedules.</p>
+      </div>
+      <div class="feature-card">
+        <h3>🔐 Secure Access</h3>
+        <p>Protected logins for both students and professors.</p>
+      </div>
+      <div class="feature-card">
+        <h3>👨‍🏫 Faculty Tools</h3>
+        <p>Manage courses, waitlists, and student info easily.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-it-works">
+    <h2>How It Works</h2>
+    <ol>
+      <li>Login with your role and credentials</li>
+      <li>View or manage available courses</li>
+      <li>Register, drop, or update course details</li>
+      <li>Check schedules or waitlist positions</li>
+    </ol>
+  </section>
+
+  
+  <section class="contact">
+    <h2>Contact Us</h2>
+    <p>Need help or have feedback? Reach out to us anytime.</p>
+    <p>Email: <a href="mailto:support@schemasquad.edu">support@schemasquad.edu</a></p>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2025 Schema Squad. All rights reserved.</p>
+  </footer>
+
+    <script>
+      function preselectRole(role) {
+        document.getElementById("loginModal").style.display = "block";
+        document.querySelectorAll('input[name="role"]').forEach(r => {
+          r.checked = r.value === role;
+        });
+      }
+      function closeLogin() {
+        document.getElementById("loginModal").style.display = "none";
+      }
+    </script>
+    
+<script>
+function closeLogin() {
+  document.getElementById("loginModal").style.display = "none";
+}
+function submitLogin() {
+  const email = document.getElementById("loginEmail").value;
+  const pass = document.getElementById("loginPass").value;
+  const role = document.querySelector('input[name="role"]:checked')?.value;
+
+  if (email === "123" && pass === "123") {
+    if (role === "Student") {
+      window.location.href = "student.html";
+    } else if (role === "Professor") {
+      window.location.href = "professor.html";
+    } else {
+      alert("Please select a role.");
+    }
+  } else {
+    alert("Invalid credentials. Use 123 for both username and password.");
+  }
+}
+</script>
+</body>
+</html>
+
+    
